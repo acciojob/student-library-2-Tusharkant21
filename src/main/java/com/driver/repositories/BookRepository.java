@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-
     @Query("select b from Book b where b.available =:availability and b.author in (select a from Author a where a.name =:author_name)")
     List<Book> findBooksByAuthor(String author_name, boolean availability);
 

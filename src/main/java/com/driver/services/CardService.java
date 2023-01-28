@@ -11,16 +11,21 @@ import org.springframework.stereotype.Service;
 public class CardService {
 
 
+
     @Autowired
     CardRepository cardRepository3;
 
     public Card createAndReturn(Student student){
-        Card card = null;
+        Card card = new Card();
+        card.setStudent(student);
+        student.setCard(card);
+        cardRepository3.save(card);
         //link student with a new card
         return card;
     }
 
     public void deactivateCard(int student_id){
+
         cardRepository3.deactivateCard(student_id, CardStatus.DEACTIVATED.toString());
     }
 }
